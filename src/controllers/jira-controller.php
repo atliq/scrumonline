@@ -7,6 +7,7 @@ class JiraController extends ControllerBase
 {
     public function getIssues()
     {
+        try {
         $parameters = array_merge((array) $jiraConfiguration, $_POST);
 
         $jiraUrl = $parameters['base_url'] . '/rest/api/2/search?jql=project=' . $parameters['project'];
@@ -18,12 +19,18 @@ class JiraController extends ControllerBase
             $jiraUrl .= ' order by priority';
         }
 
-        $client = new GuzzleHttp\Client();
-        $res = $client->request('GET', $jiraUrl, [
-            'auth' => [$parameters['username'], $parameters['password']]
-        ]);
-        $response = json_decode($res->getBody()->getContents(), true);
-        return $response;
+        
+            $client = new GuzzleHttp\Client();
+            $res = $client->request('GET', $jiraUrl, [
+                'auth' => [$parameters['username'], $parameters['password']]
+            ]);
+            $response = json_decode($res->getBody()->getContents(), true);
+            return $response;
+          } catch (\Exception $e) {
+              return [$e->getMessage(), $parameters['username'], $parameters['password']];
+          }
+
+        
     }
 }
 

@@ -1,7 +1,7 @@
 <?php
 include "config.php";
 include "templates/templates.php";
-include "sponsors.php";
+//include "sponsors.php";
 
 $templates = Template::getAll();
 
@@ -45,7 +45,7 @@ foreach($templates as $index=>$template)
 <!--Github Fork Badge -->
 <div class="github-fork-ribbon-wrapper hidden-xs">
   <div class="github-fork-ribbon">
-    <a target="_blank" href="https://github.com/Toxantron/scrumonline">Fork me on GitHub</a>
+    <a target="_blank" href="https://github.com/atliq/scrumonline">Fork me on GitHub</a>
   </div>
 </div>
 
