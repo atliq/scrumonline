@@ -36,7 +36,7 @@ scrum.sources.push({
     var uri = this.server;
     if(uri.substr(-1) !== '/')
       uri += '/';
-    uri += 'api/v4/projects/' + encodedRepo + '/issues';
+    uri += 'api/v4/projects/' + encodedRepo + '/issues?per_page=100';
     this.parent.$http
       .get(uri, { headers: headers })
       .then(function (response) {
